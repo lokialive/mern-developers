@@ -1,0 +1,129 @@
+1. Router
+    1) npm install react-router-dom
+    2) Create Router in App.js
+2. Bidirectional data binding - Register
+    1) Add state to constructor
+    2) In <Input />, add value = {this.state.**} to bind state to input in page
+    3) Add onChange function and setState
+    4) bind this to onhange in constructor
+    5) Add onSubmit function to <form /> : craete a new User, bind onSubmit to this in consructor
+3. axios request
+    1) npm install axios
+    2) extract backend port address
+    3) Use axios in onSubmit, deal with error: err.response.data
+    4) Use bootstramp4.form.validation.servderside module to remind user the error message
+4. Setup Redux
+    1) npm install react-redux redux redux-thunk
+    2) create store, add <Provider> to App, extract store to store.js
+    3) Use thunk to set up middleware in store.js
+    4) combine several reducers and import the rootReducer to craeteStore, add chrome redux dev tool
+    5) Write type and action: return type and data 
+    6) write reducer(take state and action): case type => return new state and update data
+    7) Connect registerUser(from authAction) and Register(from auth/register.js)
+    8) Call this.props.Action_name(userData)
+    9) mapStateToProps in Register to get state information
+5. Register request through axios
+    1) Post the data through axios in authAction
+    2) Change type name to GET_ERRORS, Change the dealing way of error
+    3) Create a error reducer, combine&mapStateToProps
+    4) In Register.js: componentWillReceiveProps & set PropTypes
+    5) Setup register successfully jump page: Use withRouter + give this.props.history. In action: get history + push
+6. Login part
+    1) connect login part 
+    2) Get token and decode token
+        2.1 axios post login data, get token and save token to local storage , setAuthToken
+        2.2 npm install jwt-decode --save
+        2.3 In action, after setAuthToken, decode token
+        2.4 dispatch user info(decoded token) to reducer: return type and payload(decoded token)
+        2.5 in reducer, switch case: return state and update state
+    3) remind of the error message: mapStateToProps + PropTypes + get props in componentWillReceiveProps
+        3.1 mapStateToProps + PropTypes 
+        3.2 get props in componentWillReceiveProps
+        3.3 Use boorstrap module in Login part
+        3.4 If authenticated, jump to dashboard
+        3.5 Fresh page and authenticated keep: check token, set token, dispatch and setCurrentUser
+7. Logout part
+    1) action: localStorage delete + update reducer's state
+    2) Navbar connect to logoutUser action: add connect mapStateToProps PropTypes
+    3) check whether isAuthenticated and return differnent navbar link
+8. Dealing with expired token
+    1) in App: if currentTime>exp time, dispatch logout + delete user info + redirect to login
+    2) In Login, if authenticated, jump from landing/ register/login to dashboard
+9. Personal Profile(1)
+    1) encapsule the input module
+    2) set dashboard route in App.js
+    3) add profileaction and profile reducer and types
+    4) In dashboard: proptypes and mapStateToProps
+    5) check whether loading/ profile is null -> display loading gif
+    6) check whether get prfoile data is null -> display reminder and link to create a profile
+    7) click logout, add clearCurrentProfile -> add type, reducer and action
+    (
+        call a function procedure:
+        1) in frontend return before render: call this.props.funcName
+        2) import the func from action, connect it to this module in the last line
+        3) in action.js: export const funcName: return type/do axios request
+        4) add new type and import type to other files: reducer and action
+        5) in reducer: switch case -> return ...state and update state info
+    )
+10. private router and navigation guardian: when logout, enter dashboard -> redirect to login
+    1) Create a privateRoute module: template & proptypes & mapStatetoProps
+    2) Use privateRoute instead of general Router in App.js
+    3) Use switch to contain the privateRoute, so as to re渲染 this url's view
+11. 
+    1) Create createProfile module: consructor setState + return html
+    2) Add privateRoute in App.js, jump to createProfile
+    3) encapsulate textAreaFieldGroup, SelectListGroup, InputGroup module
+    4) Add form, related mdoule to the create-profile page & submit button
+    5) Add social account transfer button: check current status and take counter
+    6) Add four part text to the social account part + use fontawesome.com to add icon
+12. Save personal profile
+    1) Get input data const 
+    2) Create createProfile action: axios post -> history push & return GET_ERRORS
+    3) import connect,  action in CreateProfile & use it in onSubmit
+    4) add proptypes, mapStateToProps, componentWillReceiveProps to CreatePrfoile.js module
+    5) componentWillReceiveProps-> make sure errors appears
+13. Delete current account
+    1) add delete button
+    2) add deleteAccount action => set_current_user({})
+    3) call deleteAccount from button: onClickDelete
+14. Edit profile -- small bug
+    1) Add editProfile route in App.js
+    2) Create EditProfile module html
+    3) Use getCurrentProfile to get current info, 
+    4) check whether is null and give an empty string in componentWillReceiveProps
+15. Add experience/education
+    1) create add exp/edu module
+    2) create action & router 
+    3) mapStateToProps & Proptypes & componentWillReceiveProps
+16. Display and delete exp/edu
+17.User page display
+    1) Create Profiles and ProfileItem
+    2) Set up Route and action and reducer and types
+18. More info page display
+    1) Create header, about, creds, github module: transfer in profile userData
+    2) Module get data and const {edu} = this.props to get. And map and display
+19. Github display part:
+    1. https://github.com/settings/applications/new to create new application
+    2. get cient_id, client_secret, sort and count
+    3. fetch from github port
+    4. display
+20. Post
+    Click submit -> get newPost data -> call action: addPost 
+    -> axios.post -> dispatch new data to reducer -> return state and update data 
+    -> add success! 
+
+    1) Create reducer, set up type, initialize the initial state
+    2) in reducer, add default switch type, add reducer to main reducer
+    3) Create add post action
+    4) Create Posts, PostForm html module, add constructor
+    5) bind on..., onSubmit,onChange
+    6) add Private Router and button on Navbar
+    7) add Proptypes, mapStateToProps, connect in PostForm to get addPost and user
+    8) To get error reminder, add componentWillReceiveProps
+    9) Finish reducer to add data => case return
+21. Display Posts
+    1) Create get_post action, add type
+    2) Call get_post action in Post.js (before render: Component will mount)
+    3) add postReducer case
+    4) PropTypes,mapStateToProps,connect
+22. comment & like

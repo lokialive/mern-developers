@@ -1,0 +1,97 @@
+1. Build local server
+    1) npm install koa koa-router 
+    2) Import koa router
+    3) Listen port
+2. Connect database
+    1) npm install mongoose
+    2) Seperate the database key
+3. Create test API
+    1) Create a test router
+4. Create user model
+    1) import mongoose
+    2) Create schema
+    3) Create model
+5. Create Register API
+    1) npm install koa-bodyparser --save
+    2) Let app use boayParser
+    3) Check data validation
+    4) Create new model and save
+    5) Change the password to secret: npm install bcrypt.js --save
+6. Global avatar
+    1) npm install gravatar
+    2) import gravatar and use email to get the avatar
+7. Encrypt the register API
+    1) Encapsulate the encrypt tool use bcrtptjs
+    2) Encrypt the password when create the new User model
+8. Create the login API
+    1) check whether the email exist
+    2) check password
+9. Create token
+    1) npm install jsonwebtoken --save
+    2) create token : use info to contain, key and expired time
+    3) add token to ctx.body:  {token: "Bear " + token}
+10. Passport verifies token
+    1) npm install koa-passport  --save
+    2) Create a verify router
+    3) import koa-passport to app.js, initialize the passport
+    4) npm install passport-jwt --save
+    5) use passport.authenticate('jwt', { session: false }) in verify API
+    6) Because app.js listen to passport, so call the passport function in passport.js
+    7) Change the information returned
+11. Validate input information from backend
+    1) npm install validator --save
+    2) Create validate function 
+    3) Call the validation function in register API
+    4) Add the rest validation functions
+12. Profile API
+    1) Create Profile schema and model
+    2) Create get profile api
+    3) Create add/edit api: create const fields and check edit/ add
+    4) Verify required profile information input
+    5) Get profile by handle
+    6) Get profile by user_id
+    7) Get all users' profile
+13. Experience and education API
+    1) Create post experience API
+    2) Check if user exist
+    3) Create const newExp and update
+    4) Check input validation
+    5) Create education API
+14. Complement experience and education API
+    1) Add new experience and education
+    2) Change findOneAndUpdate to UpdateOne
+    3) Re-find by user id and populate
+15. Delete experience and education
+    1) Get delete id and check datatbase by user_id
+    2) Find remove index and remove
+16. Delete the whole user
+    1) Check data exist
+    2) Delete profile
+    3) Import User model and delete find user
+    4) Delete user
+17. Create Post API
+    1) Create post model, containing likes and comment part
+    2) Create create post API
+    3) Create new post model and save new post
+    4) Add the input validation
+18. Get All and Single Post
+    1) Use Post.find() to get all posts
+    2) Use findById to create find by id API
+19. Delete a post by id
+    1) Check whether this user can user post function: has a profile
+    2) Find the post by id
+    3) CHeck whether this post is belong to this user
+20. Like and unlike API
+    1) Check whether this user has profile => can use the function of likes
+    2) Get the post by id
+    3) Filt the likes by this user id and check whether it has been exist
+    4) Add the user to the likes of this post
+    5) Unlike API
+21. Create and delete comment for post API
+    1) Get the target post
+    2) Create new comment
+    3) Add the comment to the post and update the post to database
+
+    4) Check whether the comment is exist by id
+    5) Check whether the comment is belong to this user
+    6) Delete the comment from the post and update the post
