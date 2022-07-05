@@ -2,6 +2,7 @@ const koa = require('koa')
 const Router = require('koa-router')
 const mongoose = require('mongoose')
 const db = require('./config/keys').mongoURI
+const cors = require('cors')
 
 // instantiate koa
 const app = new koa()
@@ -45,19 +46,20 @@ router.use('/api/posts', posts)
 //Configure router
 app.use(router.routes()).use(router.allowedMethods())
 
-app.use((req, res, next) => {
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', '*')
+app.use(cors())
+// app.use((req, res, next) => {
+//   // Website you wish to allow to connect
+//   res.setHeader('Access-Control-Allow-Origin', '*')
 
-  // Request methods you wish to allow
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE')
+//   // Request methods you wish to allow
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE')
 
-  // Request headers you wish to allow
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
+//   // Request headers you wish to allow
+//   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type')
 
-  // Pass to next layer of middleware
-  next()
-})
+//   // Pass to next layer of middleware
+//   next()
+// })
 
 //-------- deployment----------
 
