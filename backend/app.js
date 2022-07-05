@@ -34,7 +34,7 @@ app.use(passport.session())
 require('./config/passport')(passport)
 
 app.use(bodyParser())
-router.get('/home', async (ctx) => {
+router.get('/', async (ctx) => {
   ctx.body = 'Hello, koa interface!'
 })
 //Configure router address  localhost:5000/api/users
