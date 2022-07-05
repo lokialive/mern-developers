@@ -27,5 +27,8 @@
     "mongoose": "^6.3.8",
     "passport-jwt": "^4.0.0",
     "validator": "^13.7.0"
-  }
+  },
+  "resolutions": { "fs-capacitor": "3.0.0" }
+
+
 }
