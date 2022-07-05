@@ -41,7 +41,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://developers-backend-mern.herokuapp.com/",
   "devDependencies": {
     "redux-devtools-extension": "^2.13.9"
   }

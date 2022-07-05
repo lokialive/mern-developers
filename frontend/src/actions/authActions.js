@@ -15,7 +15,10 @@ export const registerUser = (userData, history) => (dispatch) => {
 
   //request by axios:
   axios
-    .post('api/users/register', userData)
+    .post(
+      'https://developers-backend-mern.herokuapp.com/api/users/register',
+      userData,
+    )
     .then((res) => history.push('/login'))
     .catch((err) =>
       dispatch({
@@ -28,7 +31,10 @@ export const registerUser = (userData, history) => (dispatch) => {
 // Login part
 export const loginUser = (userData) => (dispatch) => {
   axios
-    .post('api/users/login', userData)
+    .post(
+      'https://developers-backend-mern.herokuapp.com/api/users/login',
+      userData,
+    )
     .then((res) => {
       const { token } = res.data
       // // save token to LS

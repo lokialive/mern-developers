@@ -31,7 +31,10 @@ export const getCurrentProfile = () => (dispatch) => {
 //Create profile post data
 export const createProfile = (profileData, history) => (dispatch) => {
   axios
-    .post('/api/profiles', profileData)
+    .post(
+      'https://developers-backend-mern.herokuapp.com/api/profiles',
+      profileData,
+    )
     .then((res) => history.push('/dashboard'))
     .catch((err) =>
       dispatch({
@@ -44,7 +47,7 @@ export const createProfile = (profileData, history) => (dispatch) => {
 //delete current account
 export const deleteAccount = () => (dispatch) => {
   axios
-    .delete('/api/profiles')
+    .delete('https://developers-backend-mern.herokuapp.com/api/profiles')
     .then((res) =>
       dispatch({
         type: SET_CURRENT_USER,
@@ -62,7 +65,10 @@ export const deleteAccount = () => (dispatch) => {
 // add experience action
 export const addExperience = (data, history) => (dispatch) => {
   axios
-    .post('/api/profiles/experience', data)
+    .post(
+      'https://developers-backend-mern.herokuapp.com/api/profiles/experience',
+      data,
+    )
     .then((res) => history.push('/dashboard'))
     .catch((err) =>
       dispatch({
@@ -75,7 +81,9 @@ export const addExperience = (data, history) => (dispatch) => {
 // delete experience
 export const deleteExperience = (id, history) => (dispatch) => {
   axios
-    .delete(`/api/profiles/experience?id=${id}`)
+    .delete(
+      `https://developers-backend-mern.herokuapp.com/api/profiles/experience?id=${id}`,
+    )
     .then((res) => window.location.reload())
     .catch((err) =>
       dispatch({
@@ -88,7 +96,10 @@ export const deleteExperience = (id, history) => (dispatch) => {
 //add education
 export const addEducation = (expData, history) => (dispatch) => {
   axios
-    .post('/api/profiles/education', expData)
+    .post(
+      'https://developers-backend-mern.herokuapp.com/api/profiles/education',
+      expData,
+    )
     .then((res) => history.push('/dashboard'))
     .catch((err) =>
       dispatch({
@@ -101,7 +112,9 @@ export const addEducation = (expData, history) => (dispatch) => {
 // delete education
 export const deleteEducation = (id, history) => (dispatch) => {
   axios
-    .delete(`/api/profiles/education?edu_id=${id}`)
+    .delete(
+      `https://developers-backend-mern.herokuapp.com/api/profiles/education?edu_id=${id}`,
+    )
     .then((res) => window.location.reload())
     .catch((err) =>
       dispatch({
@@ -116,7 +129,7 @@ export const getProfiles = () => (dispatch) => {
   dispatch(setProfileLoading())
 
   axios
-    .get('/api/profiles/all')
+    .get('https://developers-backend-mern.herokuapp.com/api/profiles/all')
     .then((res) =>
       dispatch({
         type: GET_PROFILES,
@@ -133,7 +146,9 @@ export const getProfiles = () => (dispatch) => {
 
 export const getProfileByHandle = (handle) => (dispatch) => {
   dispatch(setProfileLoading())
-  axios(`/api/profiles/handle?handle=${handle}`)
+  axios(
+    `https://developers-backend-mern.herokuapp.com/api/profiles/handle?handle=${handle}`,
+  )
     .then((res) =>
       dispatch({
         type: GET_PROFILE,

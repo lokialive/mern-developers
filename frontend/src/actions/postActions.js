@@ -11,7 +11,7 @@ import {
 // Add post
 export const addPost = (postdata) => (dispatch) => {
   axios
-    .post('/api/posts', postdata)
+    .post('https://developers-backend-mern.herokuapp.com/api/posts', postdata)
     .then((res) => {
       window.location.reload()
     })
@@ -26,7 +26,7 @@ export const addPost = (postdata) => (dispatch) => {
 export const getPosts = () => (dispatch) => {
   dispatch(setPostLoading)
   axios
-    .get('/api/posts/all')
+    .get('https://developers-backend-mern.herokuapp.com/api/posts/all')
     .then((res) =>
       dispatch({
         type: GET_POSTS,
@@ -45,7 +45,7 @@ export const getPosts = () => (dispatch) => {
 export const getPost = (id) => (dispatch) => {
   dispatch(setPostLoading)
   axios
-    .get(`/api/posts?id=${id}`)
+    .get(`https://developers-backend-mern.herokuapp.com/api/posts?id=${id}`)
     .then((res) =>
       dispatch({
         type: GET_POST,
@@ -63,7 +63,7 @@ export const getPost = (id) => (dispatch) => {
 // delete a post
 export const deletePost = (id) => (dispatch) => {
   axios
-    .delete(`/api/posts?id=${id}`)
+    .delete(`https://developers-backend-mern.herokuapp.com/api/posts?id=${id}`)
     .then((res) =>
       dispatch({
         type: DELETE_POST,
@@ -81,7 +81,9 @@ export const deletePost = (id) => (dispatch) => {
 // like a post
 export const addLike = (id) => (dispatch) => {
   axios
-    .post(`/api/posts/like?id=${id}`)
+    .post(
+      `https://developers-backend-mern.herokuapp.com/api/posts/like?id=${id}`,
+    )
     .then((res) => window.location.reload())
     .catch((err) =>
       dispatch({
@@ -94,7 +96,9 @@ export const addLike = (id) => (dispatch) => {
 // unlike a post
 export const removeLike = (id) => (dispatch) => {
   axios
-    .post(`/api/posts/unlike?id=${id}`)
+    .post(
+      `https://developers-backend-mern.herokuapp.com/api/posts/unlike?id=${id}`,
+    )
     .then((res) => window.location.reload())
     .catch((err) =>
       dispatch({
@@ -107,7 +111,10 @@ export const removeLike = (id) => (dispatch) => {
 // add comment
 export const addComment = (postId, commentData) => (dispatch) => {
   axios
-    .post(`/api/posts/comment?id=${postId}`, commentData)
+    .post(
+      `https://developers-backend-mern.herokuapp.com/api/posts/comment?id=${postId}`,
+      commentData,
+    )
     .then((res) => window.location.reload())
     .catch((err) =>
       dispatch({
@@ -120,7 +127,9 @@ export const addComment = (postId, commentData) => (dispatch) => {
 // delete comment
 export const deleteComment = (postId, commentId) => (dispatch) => {
   axios
-    .delete(`/api/posts/comment?id=${postId}&comment_id=${commentId}`)
+    .delete(
+      `https://developers-backend-mern.herokuapp.com/api/posts/comment?id=${postId}&comment_id=${commentId}`,
+    )
     .then((res) =>
       dispatch({
         type: GET_POST,
