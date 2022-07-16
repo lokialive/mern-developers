@@ -2,7 +2,6 @@ const koa = require('koa')
 const Router = require('koa-router')
 const mongoose = require('mongoose')
 const db = require('./config/keys').mongoURI
-const cors = require('cors')
 
 // instantiate koa
 const app = new koa()
@@ -17,6 +16,8 @@ const posts = require('./routes/api/posts')
 
 const path = require('path')
 
+const cors = require('koa2-cors')
+
 // Connect the database
 mongoose
   .connect(db)
@@ -27,6 +28,7 @@ mongoose
     console.log(err)
   })
 
+app.use(cors())
 // use passport module
 app.use(passport.initialize())
 app.use(passport.session())
@@ -46,7 +48,6 @@ router.use('/api/posts', posts)
 //Configure router
 app.use(router.routes()).use(router.allowedMethods())
 
-app.use(cors())
 // app.use((req, res, next) => {
 //   // Website you wish to allow to connect
 //   res.setHeader('Access-Control-Allow-Origin', '*')
