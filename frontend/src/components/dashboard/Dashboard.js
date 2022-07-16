@@ -21,7 +21,7 @@ class Dashboard extends Component {
 
   render() {
     const { user } = this.props.auth
-
+    console.log(this.props)
     const { profile, loading } = this.props.profile
     let dashboardContent
     //check whether prfoile is null || loading is true
