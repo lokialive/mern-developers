@@ -4,30 +4,37 @@ import { PropTypes } from 'prop-types'
 import { deleteExperience } from '../../actions/profileActions'
 
 import { withRouter } from 'react-router-dom'
-
+import isEmpty from '../../validation/isEmpty'
 class Experience extends Component {
   onDeleteClick(id) {
     this.props.deleteExperience(id, this.props.history)
   }
   render() {
-    //Get encapsulated experience
-    const experience = this.props.experience.map((exp) => (
-      <tr className="lead text-muted" key={exp._id}>
-        <td>{exp.company}</td>
-        <td>{exp.title}</td>
-        <td>
-          {exp.from} 至 {exp.to === '' ? 'Till now' : exp.to}
-        </td>
-        <td>
-          <button
-            onClick={this.onDeleteClick.bind(this, exp._id)}
-            className="btn btn-danger"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    ))
+    let experience = (
+      <div>
+        <p> No experience record</p>
+      </div>
+    )
+    if (!isEmpty(this.props.experience)) {
+      //Get encapsulated experience
+      experience = this.props.experience.map((exp) => (
+        <tr className="lead text-muted" key={exp._id}>
+          <td>{exp.company}</td>
+          <td>{exp.title}</td>
+          <td>
+            {exp.from} 至 {exp.to === '' ? 'Till now' : exp.to}
+          </td>
+          <td>
+            <button
+              onClick={this.onDeleteClick.bind(this, exp._id)}
+              className="btn btn-danger"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      ))
+    }
 
     return (
       <div>

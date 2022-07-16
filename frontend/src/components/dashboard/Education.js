@@ -3,29 +3,36 @@ import { connect } from 'react-redux'
 import { PropTypes } from 'prop-types'
 import { deleteEducation } from '../../actions/profileActions'
 import { withRouter } from 'react-router-dom'
-
+import isEmpty from '../../validation/isEmpty'
 class Education extends Component {
   onDeleteClick(id) {
     this.props.deleteEducation(id, this.props.history)
   }
   render() {
-    const education = this.props.education.map((exp) => (
-      <tr className="lead text-muted" key={exp._id}>
-        <td>{exp.school}</td>
-        <td>{exp.degree}</td>
-        <td>
-          {exp.from} to {exp.to === '' ? 'Till now' : exp.to}
-        </td>
-        <td>
-          <button
-            onClick={this.onDeleteClick.bind(this, exp._id)}
-            className="btn btn-danger"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    ))
+    let education = (
+      <div>
+        <p> No education record</p>
+      </div>
+    )
+    if (!isEmpty(this.props.education)) {
+      education = this.props.education.map((exp) => (
+        <tr className="lead text-muted" key={exp._id}>
+          <td>{exp.school}</td>
+          <td>{exp.degree}</td>
+          <td>
+            {exp.from} to {exp.to === '' ? 'Till now' : exp.to}
+          </td>
+          <td>
+            <button
+              onClick={this.onDeleteClick.bind(this, exp._id)}
+              className="btn btn-danger"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      ))
+    }
 
     return (
       <div>
